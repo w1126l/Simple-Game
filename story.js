@@ -1,6 +1,6 @@
 
 //let state = 'title';
-let state = 'unfinished';
+let state = 'title';
 
 //intro
 function title() {
@@ -58,6 +58,13 @@ function introMouseClicked() {
   if (state === 'intro') {
     state = 'choose-stats';
   }
+}
+
+//changes state back to title
+function restart() {
+
+  state = 'title';
+
 }
 
 //stats/player
@@ -162,7 +169,7 @@ function dehydrationDeath() {
   fill(255);
   text('You die from dehydration.', width * 0.5, height * 0.5);
 
-}
+} //one line, restartFooter
 
 function merchantGunDeath() {
 
@@ -173,7 +180,7 @@ function merchantGunDeath() {
   fill(255);
   text('You die from bleeding out.', width * 0.5, height * 0.5);
 
-}
+} //one line, restartFooter
 
 function unfinished() {
 
@@ -208,15 +215,9 @@ function oalnbbinTRYAGAIN() {
   textFont("monospace", width * 0.05);
   fill(255);
   text('The girl sends you back', width * 0.5, height * 0.475);
-  text('to the past.', width * 0.5, height * 0.575)
+  text('to the past.', width * 0.5, height * 0.575);
 
 } //two line, restartFooter
-
-function restart() {
-
-  state = 'title';
-
-}
 
 //footer as instructions
 function restartFooter() {
