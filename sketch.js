@@ -1,5 +1,5 @@
 
-let gamblerSym, scholarSym, heroSym;
+let butterflyBlue, gamblerSym, gamblerSymBack, scholarSym, heroSym;
 
 var canvas;
 
@@ -7,7 +7,10 @@ let luck, intelligence, courage;
 
 function preload() {
 
-  gamblerSym = loadImage('media/choose-stats-icons/gambler-symbol-1.png');
+  butterflyBlue = loadImage('media/first-page/butt-blue.png');
+
+  gamblerSym = loadImage('media/choose-stats-icons/gambler-symbol.png');
+  gamblerSymBack = loadImage('media/choose-stats-icons/gambler-symbol-1.png')
   scholarSym = loadImage('media/choose-stats-icons/scholar-symbol.png');
   heroSym = loadImage('media/choose-stats-icons/hero-symbol.png');
 

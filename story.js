@@ -15,9 +15,11 @@ function title() {
 }
 
 function titleMouseClicked() {
+
   if (state === 'title') {
     state = 'intro';
   }
+
 }
 
 function intro() {
@@ -203,8 +205,7 @@ function tbc() {
   textAlign(CENTER);
   textFont("monospace", width * 0.05);
   fill(255);
-  text('To Be Continued', width * 0.5, height * 0.5);
-
+  text('To Be Continued', width * 0.5, height 0.5);
 } //one line, restartFooter
 
 function oalnbbinTRYAGAIN() {
@@ -219,6 +220,12 @@ function oalnbbinTRYAGAIN() {
 
 } //two line, restartFooter
 
+function restart() {
+
+  state = 'title';
+
+}
+
 //footer as instructions
 function restartFooter() {
 
@@ -227,7 +234,7 @@ function restartFooter() {
   fill(255);
   text('(Press anywhere to restart)', width * 0.5, height * 0.95);
 
-}
+} //footer
 
 function continueFooter() {
 
@@ -236,7 +243,7 @@ function continueFooter() {
   fill(255);
   text('(Press anywhere to continue)', width * 0.5, height * 0.9);
 
-}
+} //footer
 
 function nContinueFooter() {
 
@@ -245,7 +252,7 @@ function nContinueFooter() {
   fill(255);
   text('(Press N to continue)', width * 0.5, height * 0.95);
 
-}
+} //footer
 
 //story functions
 function opening() {
