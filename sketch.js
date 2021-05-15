@@ -1,9 +1,18 @@
 
+let state = 'title';
+
+let butterflies = [];
+let buttX, buttY, buttSpeedX, buttSpeedY;
+let buttSize = 80;
+
+let titleInt = 200;
+let titleTime = 0;
+
 let butterflyBlue, gamblerSym, gamblerSymBack, scholarSym, heroSym;
 
-var canvas;
+let oScene;
 
-let luck, intelligence, courage;
+var canvas;
 
 function preload() {
 
@@ -14,9 +23,25 @@ function preload() {
   scholarSym = loadImage('media/choose-stats-icons/scholar-symbol.png');
   heroSym = loadImage('media/choose-stats-icons/hero-symbol.png');
 
+  oScene = loadImage('media/story-scene/o.png');
+
 }
 
 function setup() {
+
+  smooth();
+
+  frameRate(60);
+  noCursor();
+  angleMode(DEGREES);
+  imageMode(CENTER);
+
+  buttX = width/2;
+  buttY = height/2;
+  buttSpeedX = int(random(-5, 5));
+  buttSpeedY = int(random(-5, 5));
+
+  butterflies.push(new Butterfly(buttX, buttY, buttSpeedX, buttSpeedY, buttSize));
 
   canvas = createCanvas(windowHeight * 0.8, windowHeight * 0.8);
   canvas.parent('sketch-holder');
@@ -25,13 +50,18 @@ function setup() {
 
 function draw() {
 
+  imageMode(CORNER);
+
   background(0);
+
+  console.log('State: ' + state);
 
   switch (state) {
 
     //beginning of game
     case 'title':
       title();
+      titleButterfly();
       canvas.mouseClicked(titleMouseClicked);
       break;
     case 'intro':
@@ -42,153 +72,152 @@ function draw() {
       stats();
       break;
 
-    //beginning of the story
-    case 'opening':
-      opening();
-      statsFooter();
-      break;
-
     //current endings and deaths
-    case 'dehydration-death':
+    case 'dehydration-death': //one line, restartFooter
       dehydrationDeath();
       restartFooter();
       canvas.mouseClicked(restart);
       break;
-    case 'merchant-gun-death':
+    case 'merchant-gun-death': //one line, restartFooter
       merchantGunDeath();
       restartFooter();
       canvas.mouseClicked(restart);
       break;
-    case 'unfinished':
+    case 'unfinished': //three lines, restartFooter
       unfinished();
       restartFooter();
       canvas.mouseClicked(restart);
       break;
-    case 'to-be-cont':
+    case 'to-be-cont': //one line, restartFooter
       tbc();
       restartFooter();
       canvas.mouseClicked(restart);
       break;
-    case 'oalnbbinTRYAGAIN':
+    case 'oalnbbinTRYAGAIN': //two line, restartFooter
       oalnbbinTRYAGAIN();
       restartFooter();
       canvas.mouseClicked(restart);
       break;
 
-    case 'oaly':
+    //beginning of the story
+    case 'opening': //title, box, 2 options
+      opening(); //IMAGE DONE
+      statsFooter();
+      break;
+
+    case 'oaly': //title, box, 2 options
       oaly();
       statsFooter();
       break;
 
-    case 'oalybcy':
+    case 'oalybcy': //three lines, nContinueFooter
       oalybcy();
       nContinueFooter();
       break;
-    case 'oalybcn':
+    case 'oalybcn': //title, box, one line description, 2 options
       oalybcn();
       statsFooter();
       break;
 
     //death by crying
-    case 'oalybcnaCRY':
+    case 'oalybcnaCRY': //one line, nContinueFooter
       oalybcnaCRY();
       nContinueFooter();
       break;
-    case 'oalybcnaCRYCRY':
+    case 'oalybcnaCRYCRY': //one line, nContinueFooter
       oalybcnaCRYCRY();
       nContinueFooter();
       break;
-    case 'oalybcnaCRYCRYCRY':
+    case 'oalybcnaCRYCRYCRY': //one line, nContinueFooter
       oalybcnaCRYCRYCRY();
       nContinueFooter();
       break;
     //end of death by crying sequence
 
-    case 'oalnbbin':
+    case 'oalnbbin': //title, box, three line description, 4 options
       oalnbbin();
       statsFooter();
       break;
-    case 'oalnbbinALEX':
+    case 'oalnbbinALEX': //four lines, nContinueFooter
       oalnbbinALEX();
       nContinueFooter();
       break;
 
-    case 'oaln':
+    case 'oaln': //title, box, one line description, 2 options
       oaln();
       statsFooter();
       break;
 
-    case 'oalna':
+    case 'oalna': //title, box, two line description, 2 options
       oalna();
       statsFooter();
       break;
-    case 'oalnb':
+    case 'oalnb': //title, box, two line description, 2 options
       oalnb();
       statsFooter();
       break;
 
-    case 'oalnbbiy':
+    case 'oalnbbiy': //two line, nContinueFooter
       oalnbbiy();
       nContinueFooter();
       break;
-    case 'oalnbbiy-':
+    case 'oalnbbiy-': //title, box, one line description, 2 options
       oalnbbiyMINUS();
       statsFooter();
       break;
-    case 'oalnbbiy-a':
+    case 'oalnbbiy-a': //REVERSE, box, four line description, nContinueFooter
       oalnbbiyMINUSa();
       nContinueFooter();
       break;
-    case 'oalnbbiy-b':
+    case 'oalnbbiy-b': //REVERSE, box, four line description, nContinueFooter
       oalnbbiyMINUSb();
       nContinueFooter();
       break;
 
     //merchant
-    case 'm':
+    case 'm': //title, box, two line description, 2 options
       m();
       statsFooter();
       break;
 
-    case 'ma':
+    case 'ma': //title, box, two line description, 2 options
       ma();
       statsFooter();
       break;
-    case 'mab':
+    case 'mab': //title, box, two line description, 2 options
       mab();
       statsFooter();
       break;
-    case 'maba':
+    case 'maba': //title, box, two line description, 2 options
       maba();
       statsFooter();
       break;
 
-    case 'mabb':
+    case 'mabb': //REVERSE, box, three line description, nContinueFooter
       mabb();
       nContinueFooter();
       break;
 
-    case 'mabaa':
+    case 'mabaa': //four lines, nContinueFooter
       mabaa();
       nContinueFooter();
       break;
-    case 'mabab':
+    case 'mabab': //six lines, nContinueFooter
       mabab();
       nContinueFooter();
       break;
 
-    case 'mbcy':
+    case 'mbcy': //two line, nContinueFooter
       mbcy();
       nContinueFooter();
       break;
-    case 'mbcn':
+    case 'mbcn': //three line, nContinueFooter
       mbcn();
       nContinueFooter();
       break;
-    case 'mSIGN':
+    case 'mSIGN': //title, box, two line description, 2 options
       mSIGN();
       break;
-
   }
 }
 

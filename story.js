@@ -1,17 +1,76 @@
 
-//let state = 'title';
-let state = 'title';
-
 //intro
 function title() {
 
-  background(0);
+  background(20);
+
+  textFont("monospace", width * 0.2);
+
+  let txt = "RESTART";
+  let txtH = 50;
+  let txtW = textWidth(txt);
+  let spacing = txtW / txt.length;
+
+  for(let i = 0; i < txt.length; i++){
+    let c = txt.charAt(i);
+
+    let offsetX = random(-spacing / 20, spacing / 20);
+    let offsetY = random(-spacing / 20, spacing / 20);
+
+    let startX = (width - txtW) / 2 + spacing / 2;
+    let y = height * 0.25; //  + textHeight / 2;
+    text(c, startX + i * spacing + offsetX, y + offsetY);
+  }
 
   textAlign(CENTER);
-  textFont("monospace", width * 0.05);
-  fill(255);
-  text('Game Start!', width * 0.5, height * 0.5);
+  textStyle(NORMAL);
+  textFont("monospace", width * 0.03);
+  text('By: Winnie Liang', width * 0.5, height * 0.4);
 
+  fill(200);
+  textStyle(BOLD);
+  textFont("monospace", width * 0.025);
+  text('CONTROLS', width * 0.5, height * 0.575);
+
+  textStyle(NORMAL);
+  textFont("monospace", width * 0.02);
+  text("This game utilizes your keyboard a lot.", width * 0.5, height * 0.65);
+  text("For option A, press the key 'A'. For option B, press the key 'B'.", width * 0.5, height * 0.7);
+  text("For option C, press the key 'C'. For option D, press the key 'D'.", width * 0.5, height * 0.725);
+  text("The text on the bottom of the screen will give you further instructions.", width * 0.5, height * 0.775);
+  text("To continue some scenes, you must press the key 'N'.", width * 0.5, height * 0.825);
+  text("To continue in other scenes, you must press the screen.", width * 0.5, height * 0.85);
+
+  noFill();
+  stroke(230);
+  rect(width * 0.05, height * 0.6, width * 0.9, width * 0.3);
+
+  noStroke();
+  fill(255);
+  textStyle(NORMAL);
+  textFont("monospace", width * 0.02);
+  text('Press anywhere to begin.', width * 0.5, height * 0.95);
+
+}
+
+function titleButterfly() {
+
+  imageMode(CENTER);
+
+  if (frameCount > titleTime) {
+    butterflies.push(new Butterfly(buttX, buttY, buttSpeedX, buttSpeedY, buttSize));
+    titleTime = frameCount + titleInt;
+  }
+
+  if(butterflies.length > 30) {
+    butterflies.splice(1);
+    butterflies[0].reset();
+  }
+
+  for (let i = 0; i < butterflies.length; i++) {
+    butterflies[i].draw();
+    butterflies[i].move();
+    }
 }
 
 function titleMouseClicked() {
@@ -163,29 +222,24 @@ function statsFooter() {
 
 //death/over screens
 function dehydrationDeath() {
-
   background(0);
 
   textAlign(CENTER);
   textFont("monospace", width * 0.05);
-  fill(255);
+  fill(255, 0, 0);
   text('You die from dehydration.', width * 0.5, height * 0.5);
-
-} //one line, restartFooter
+}
 
 function merchantGunDeath() {
-
   background(0);
 
   textAlign(CENTER);
   textFont("monospace", width * 0.05);
-  fill(255);
+  fill(255, 0, 0);
   text('You die from bleeding out.', width * 0.5, height * 0.5);
-
-} //one line, restartFooter
+}
 
 function unfinished() {
-
   background(0);
 
   textAlign(CENTER);
@@ -195,21 +249,18 @@ function unfinished() {
   text('You realize that the story has', width * 0.5, height * 0.4);
   text('barely been written and', width * 0.5, height * 0.5);
   text('decide to restart.', width * 0.5, height * 0.6);
-
-} //three lines, restartFooter
+}
 
 function tbc() {
-
   background(0);
 
   textAlign(CENTER);
   textFont("monospace", width * 0.05);
   fill(255);
-  text('To Be Continued', width * 0.5, height 0.5);
-} //one line, restartFooter
+  text('To Be Continued', width * 0.5, height * 0.5);
+}
 
 function oalnbbinTRYAGAIN() {
-
   background(0);
 
   textAlign(CENTER);
@@ -217,47 +268,37 @@ function oalnbbinTRYAGAIN() {
   fill(255);
   text('The girl sends you back', width * 0.5, height * 0.475);
   text('to the past.', width * 0.5, height * 0.575);
-
-} //two line, restartFooter
+}
 
 function restart() {
-
   state = 'title';
-
 }
 
 //footer as instructions
 function restartFooter() {
-
   textAlign(CENTER);
   textFont("monospace", width * 0.02);
   fill(255);
   text('(Press anywhere to restart)', width * 0.5, height * 0.95);
-
 } //footer
 
 function continueFooter() {
-
   textAlign(CENTER);
   textFont("monospace", width * 0.02);
   fill(255);
   text('(Press anywhere to continue)', width * 0.5, height * 0.9);
-
 } //footer
 
 function nContinueFooter() {
-
   textAlign(CENTER);
   textFont("monospace", width * 0.02);
   fill(255);
   text('(Press N to continue)', width * 0.5, height * 0.95);
-
 } //footer
 
 //story functions
 function opening() {
-
-  background(255);
+  background(220);
 
   textAlign(CENTER);
   textStyle(BOLD);
@@ -266,6 +307,7 @@ function opening() {
   text('You are falling out of the sky.', width * 0.5, height * 0.15);
 
   rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  image(oScene, width * 0.1, width * 0.2, width * 0.8, height * 0.5);
 
   textAlign(LEFT);
   textStyle(NORMAL);
@@ -275,11 +317,9 @@ function opening() {
   text('B: You look around.', width * 0.1, height * 0.85);
   text('-', width * 0.1, height * 0.875);
   text('-', width * 0.1, height * 0.9);
-
-} //title, box, 2 options
+}
 
 function oaly() {
-
   background(255);
 
   textAlign(CENTER);
@@ -298,25 +338,21 @@ function oaly() {
   text('B: You decide to sit down and cry.', width * 0.1, height * 0.85);
   text('-', width * 0.1, height * 0.875);
   text('-', width * 0.1, height * 0.9);
-
 }
 
 function oalybcy() {
-
   background(0);
 
   textAlign(CENTER);
   textStyle(NORMAL);
   textFont("monospace", width * 0.05);
   fill(255);
-  text('You get yourself together', width * 0.5, height * 0.45);
+  text('You get yourself together', width * 0.5, height * 0.4);
   text('and start walking', width * 0.5, height * 0.5);
-  text('towards the sounds of water.', width * 0.5, height * 0.55);
-
+  text('towards the sounds of water.', width * 0.5, height * 0.6);
 }
 
 function oalybcn() {
-
   background(255);
 
   textAlign(CENTER);
@@ -339,11 +375,9 @@ function oalybcn() {
   text('B: You walk towards the smoke.', width * 0.1, height * 0.85);
   text('-', width * 0.1, height * 0.875);
   text('-', width * 0.1, height * 0.9);
-
 }
 
 function oalybcnaCRY() {
-
   background(0);
 
   textAlign(CENTER);
@@ -351,11 +385,9 @@ function oalybcnaCRY() {
   textFont("monospace", width * 0.05);
   fill(255);
   text('You cry more and more.', width * 0.5, height * 0.5);
-
 }
 
 function oalybcnaCRYCRY() {
-
   background(0);
 
   textAlign(CENTER);
@@ -363,11 +395,9 @@ function oalybcnaCRYCRY() {
   textFont("monospace", width * 0.05);
   fill(255);
   text('And more and more.', width * 0.5, height * 0.5);
-
 }
 
 function oalybcnaCRYCRYCRY() {
-
   background(0);
 
   textAlign(CENTER);
@@ -375,165 +405,9 @@ function oalybcnaCRYCRYCRY() {
   textFont("monospace", width * 0.05);
   fill(255);
   text('And more and more and more.', width * 0.5, height * 0.5);
-
-}
-
-function oaln() {
-
-  background(255);
-
-  textAlign(CENTER);
-  textStyle(BOLD);
-  textFont("monospace", width * 0.04);
-  fill(0);
-  text('You fall into a wooden outhouse on a swamp.', width * 0.5, height * 0.15);
-
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
-
-  textStyle(NORMAL);
-  textFont("monospace", width * 0.022);
-  text("You're covered in filth.", width * 0.5, height * 0.75);
-
-  textAlign(LEFT);
-  textStyle(NORMAL);
-  textFont("monospace", width * 0.02);
-  fill(0);
-  text('A: You start crying.', width * 0.1, height * 0.825);
-  text('B: You run outside and rub yourself against a tree.', width * 0.1, height * 0.85);
-  text('-', width * 0.1, height * 0.875);
-  text('-', width * 0.1, height * 0.9);
-
-}
-
-function oalna() {
-
-  background(255);
-
-  textAlign(CENTER);
-  textStyle(BOLD);
-  textFont("monospace", width * 0.04);
-  fill(0);
-  text('You feel disgusted with yourself.', width * 0.5, height * 0.15);
-
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
-
-  textStyle(NORMAL);
-  textFont("monospace", width * 0.022);
-  text("You start crying.", width * 0.5, height * 0.725);
-  text("You see smoke in the air. It might be a campfire.", width * 0.5, height * 0.775);
-
-  textAlign(LEFT);
-  textStyle(NORMAL);
-  textFont("monospace", width * 0.02);
-  fill(0);
-  text('A: You continue crying.', width * 0.1, height * 0.825);
-  text('B: You walk towards the smoke.', width * 0.1, height * 0.85);
-  text('-', width * 0.1, height * 0.875);
-  text('-', width * 0.1, height * 0.9);
-
-}
-
-function oalnb() {
-
-  background(255);
-
-  textAlign(CENTER);
-  textStyle(BOLD);
-  textFont("monospace", width * 0.04);
-  fill(0);
-  text('A young girl in a raincoat comes', width * 0.5, height * 0.125);
-  text('out of the forest and starts laughing at you.', width * 0.5, height * 0.175);
-
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
-
-  textAlign(LEFT);
-  textStyle(NORMAL);
-  textFont("monospace", width * 0.02);
-  fill(0);
-  text('A: You start yelling at her to go away.', width * 0.1, height * 0.825);
-  text('-- She runs away and you continue on your journey.', width * 0.1, height * 0.85);
-  text("B: You're happy to see another person.", width * 0.1, height * 0.875);
-  text('-', width * 0.1, height * 0.9);
-
-}
-
-function oalnbbiy() {
-
-  background(0);
-
-  textAlign(CENTER);
-  textStyle(NORMAL);
-  textFont("monospace", width * 0.05);
-  fill(255);
-  text('The girl tells you to come with her.', width * 0.5, height * 0.5);
-
-}
-
-function oalnbbiyMINUS() {
-
-  background(255);
-
-  textAlign(CENTER);
-  textStyle(BOLD);
-  textFont("monospace", width * 0.04);
-  fill(0);
-  text('You are scared.', width * 0.5, height * 0.15);
-
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
-
-  textStyle(NORMAL);
-  textFont("monospace", width * 0.022);
-  text('But, you continue to hold her hand as she takes you through the forest.', width * 0.5, height * 0.75);
-
-  textAlign(LEFT);
-  textStyle(NORMAL);
-  textFont("monospace", width * 0.02);
-  fill(0);
-  text('A: You block off every negative thought and let her guide you.', width * 0.1, height * 0.825);
-  text("B: You tell her you're scared and that you're not from this world.", width * 0.1, height * 0.85);
-  text('-', width * 0.1, height * 0.875);
-  text('-', width * 0.1, height * 0.9);
-
-}
-
-function oalnbbiyMINUSa() {
-
-  background(0);
-
-  fill(255);
-  rect(width * 0.1, width * 0.1, width * 0.8, height * 0.5);
-
-  textAlign(CENTER);
-  textStyle(NORMAL);
-  textFont("monospace", width * 0.03);
-  fill(255);
-  text('You pass by a fork in the road with a sign that has', width * 0.5, height * 0.675);
-  text('two locations called "The Land of the Lost"', width * 0.5, height * 0.725);
-  text('and "The Poppy Hill of Sunshine." The girl leads you', width * 0.5, height * 0.775);
-  text('towards the left, "The Land of the Lost."', width * 0.5, height * 0.825);
-
-}
-
-function oalnbbiyMINUSb() {
-
-  background(0);
-
-  fill(255);
-  rect(width * 0.1, width * 0.1, width * 0.8, height * 0.5);
-
-  textAlign(CENTER);
-  textStyle(NORMAL);
-  textFont("monospace", width * 0.03);
-  fill(255);
-  text('You pass by a fork in the road with a sign that has', width * 0.5, height * 0.675);
-  text('two locations called "The Land of the Lost"', width * 0.5, height * 0.725);
-  text('and "The Poppy Hill of Sunshine." The girl leads you', width * 0.5, height * 0.775);
-  text('towards the right, "The Poppy Hill of Sunshine."', width * 0.5, height * 0.825);
-
 }
 
 function oalnbbin() {
-
   background(255);
 
   textAlign(CENTER);
@@ -558,67 +432,229 @@ function oalnbbin() {
   text("B: I don't want to tell you.", width * 0.1, height * 0.85);
   text("C: I don't remember.", width * 0.1, height * 0.875);
   text('D: Alex ... ?', width * 0.1, height * 0.9);
-
 }
 
 function oalnbbinALEX() {
-
   background(0);
 
   textAlign(CENTER);
   textStyle(NORMAL);
   textFont("monospace", width * 0.05);
   fill(255);
-  text('The girl tells you to follow her.', width * 0.5, height * 0.45);
-  text('You are a bit scared, but you ', width * 0.5, height * 0.5);
+  text('The girl tells you to follow her.', width * 0.5, height * 0.35);
+  text('You are a bit scared, but you ', width * 0.5, height * 0.45);
   text("decide it's better than being", width * 0.5, height * 0.55);
-  text("covered in feces and dirt.", width * 0.5, height * 0.6);
-
+  text("covered in feces and dirt.", width * 0.5, height * 0.65);
 }
 
-function m() {
-
+function oaln() {
   background(255);
 
   textAlign(CENTER);
   textStyle(BOLD);
   textFont("monospace", width * 0.04);
   fill(0);
-  text('You come across a merchant selling baked potatoes.', width * 0.5, height * 0.15);
+  text('You fall into a wooden outhouse on a swamp.', width * 0.5, height * 0.15);
 
   rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
 
   textStyle(NORMAL);
   textFont("monospace", width * 0.022);
-  text("He hands you one. After you take your first bite, he asks for money.", width * 0.5, height * 0.75);
+  text("You're covered in filth.", width * 0.5, height * 0.75);
 
   textAlign(LEFT);
   textStyle(NORMAL);
   textFont("monospace", width * 0.02);
   fill(0);
-  text('A: You give him your clothes, other than your underwear,', width * 0.1, height * 0.825);
-  text('-- and continue eating the potato. You were too hungry', width * 0.1, height * 0.85);
-  text('-- to worry about the weather.', width * 0.1, height * 0.875);
-  text("B: You throw the potato at the merchant's face.", width * 0.1, height * 0.9);
-
+  text('A: You start crying.', width * 0.1, height * 0.825);
+  text('B: You run outside and rub yourself against a tree.', width * 0.1, height * 0.85);
+  text('-', width * 0.1, height * 0.875);
+  text('-', width * 0.1, height * 0.9);
 }
 
-function ma() {
-
+function oalna() {
   background(255);
 
   textAlign(CENTER);
   textStyle(BOLD);
   textFont("monospace", width * 0.04);
   fill(0);
-  text('You find a path near the merchant and start walking.', width * 0.5, height * 0.15);
+  text('You feel disgusted with yourself.', width * 0.5, height * 0.15);
 
   rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
 
   textStyle(NORMAL);
   textFont("monospace", width * 0.022);
-  text("As you're walking, you feel a bit thirsty.", width * 0.5, height * 0.725);
-  text("A turtle runs up next to you and taps you on the shoulder.", width * 0.5, height * 0.775);
+  text("You start crying.", width * 0.5, height * 0.735);
+  text("You see smoke in the air. It might be a campfire.", width * 0.5, height * 0.77);
+
+  textAlign(LEFT);
+  textStyle(NORMAL);
+  textFont("monospace", width * 0.02);
+  fill(0);
+  text('A: You continue crying.', width * 0.1, height * 0.825);
+  text('B: You walk towards the smoke.', width * 0.1, height * 0.85);
+  text('-', width * 0.1, height * 0.875);
+  text('-', width * 0.1, height * 0.9);
+}
+
+function oalnb() {
+  background(255);
+
+  textAlign(CENTER);
+  textStyle(BOLD);
+  textFont("monospace", width * 0.04);
+  fill(0);
+  // text('A young girl in a raincoat comes', width * 0.5, height * 0.125);
+  // text('out of the forest and starts laughing at you.', width * 0.5, height * 0.175);
+  text('You see a young girl.', width * 0.5, height * 0.15);
+
+  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+
+  textStyle(NORMAL);
+  textFont("monospace", width * 0.022);
+  text("She's wearing a raincoat. She comes out of the forest", width * 0.5, height * 0.735);
+  text("and starts laughing at you.", width * 0.5, height * 0.77);
+
+  textAlign(LEFT);
+  textStyle(NORMAL);
+  textFont("monospace", width * 0.02);
+  fill(0);
+  text('A: You start yelling at her to go away. She runs away and you continue on', width * 0.1, height * 0.825);
+  text('-- your journey.', width * 0.1, height * 0.85);
+  text("B: You're happy to see another person.", width * 0.1, height * 0.875);
+  text('-', width * 0.1, height * 0.9);
+}
+
+function oalnbbiy() {
+  // background(0);
+  //
+  // textAlign(CENTER);
+  // textStyle(NORMAL);
+  // textFont("monospace", width * 0.05);
+  // fill(255);
+  // text('The girl tells you to go with her.', width * 0.5, height * 0.5);
+
+  background(0);
+
+  textAlign(CENTER);
+  textFont("monospace", width * 0.05);
+  fill(255);
+  text('The girl tells you to', width * 0.5, height * 0.475);
+  text('go with her.', width * 0.5, height * 0.575);
+}
+
+function oalnbbiyMINUS() {
+  background(255);
+
+  textAlign(CENTER);
+  textStyle(BOLD);
+  textFont("monospace", width * 0.04);
+  fill(0);
+  text('You are scared.', width * 0.5, height * 0.15);
+
+  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+
+  textStyle(NORMAL);
+  textFont("monospace", width * 0.022);
+  text('But, you continue to hold her hand as she takes you through the forest.', width * 0.5, height * 0.75);
+
+  textAlign(LEFT);
+  textStyle(NORMAL);
+  textFont("monospace", width * 0.02);
+  fill(0);
+  text('A: You block off every negative thought and let her guide you.', width * 0.1, height * 0.825);
+  text("B: You tell her you're scared and that you're not from this world.", width * 0.1, height * 0.85);
+  text('-', width * 0.1, height * 0.875);
+  text('-', width * 0.1, height * 0.9);
+}
+
+function oalnbbiyMINUSa() {
+  background(0);
+
+  fill(255);
+  rect(width * 0.1, width * 0.1, width * 0.8, height * 0.5);
+
+  textAlign(CENTER);
+  textStyle(NORMAL);
+  textFont("monospace", width * 0.03);
+  fill(255);
+  text('You pass by a fork in the road with a sign that has', width * 0.5, height * 0.675);
+  text('two locations called "The Land of the Lost"', width * 0.5, height * 0.725);
+  text('and "The Poppy Hill of Sunshine." The girl leads you', width * 0.5, height * 0.775);
+  text('towards the left, "The Land of the Lost."', width * 0.5, height * 0.825);
+}
+
+function oalnbbiyMINUSb() {
+  background(0);
+
+  fill(255);
+  rect(width * 0.1, width * 0.1, width * 0.8, height * 0.5);
+
+  textAlign(CENTER);
+  textStyle(NORMAL);
+  textFont("monospace", width * 0.03);
+  fill(255);
+  text('You pass by a fork in the road with a sign that has', width * 0.5, height * 0.675);
+  text('two locations called "The Land of the Lost"', width * 0.5, height * 0.725);
+  text('and "The Poppy Hill of Sunshine." The girl leads you', width * 0.5, height * 0.775);
+  text('towards the right, "The Poppy Hill of Sunshine."', width * 0.5, height * 0.825);
+}
+
+function m() {
+  background(255);
+
+  textAlign(CENTER);
+  textStyle(BOLD);
+  textFont("monospace", width * 0.04);
+  fill(0);
+  text('You come across a merchant.', width * 0.5, height * 0.15);
+
+  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+
+  // textStyle(NORMAL);
+  // textFont("monospace", width * 0.022);
+  // text("He is selling baked potatoes. He hands you one. After you take your first bite, he asks for money.", width * 0.5, height * 0.75);
+  //
+  // textAlign(LEFT);
+  // textStyle(NORMAL);
+  // textFont("monospace", width * 0.02);
+  // fill(0);
+  // text('A: You give him your clothes, other than your underwear,', width * 0.1, height * 0.825);
+  // text('-- and continue eating the potato. You were too hungry', width * 0.1, height * 0.85);
+  // text('-- to worry about the weather.', width * 0.1, height * 0.875);
+  // text("B: You throw the potato at the merchant's face.", width * 0.1, height * 0.9);
+
+  textStyle(NORMAL);
+  textFont("monospace", width * 0.022);
+  text("He is selling baked potatoes. He hands you one. After you take", width * 0.5, height * 0.735);
+  text("your first bite, he asks for money.", width * 0.5, height * 0.77);
+
+  textAlign(LEFT);
+  textStyle(NORMAL);
+  textFont("monospace", width * 0.02);
+  fill(0);
+  text('A: You give him your clothes, other than your underwear, and continue eating', width * 0.1, height * 0.825);
+  text('-- the potato. You were too hungry to worry about the weather.', width * 0.1, height * 0.85);
+  text("B: You throw the potato at the merchant's face.", width * 0.1, height * 0.875);
+  text('-', width * 0.1, height * 0.9);
+}
+
+function ma() {
+  background(255);
+
+  textAlign(CENTER);
+  textStyle(BOLD);
+  textFont("monospace", width * 0.04);
+  fill(0);
+  text('You find a path near the merchant.', width * 0.5, height * 0.15);
+
+  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+
+  textStyle(NORMAL);
+  textFont("monospace", width * 0.022);
+  text("As you're walking, you feel a bit thirsty.", width * 0.5, height * 0.735);
+  text("A turtle runs up next to you and taps you on the shoulder.", width * 0.5, height * 0.77);
 
   textAlign(LEFT);
   textStyle(NORMAL);
@@ -628,11 +664,9 @@ function ma() {
   text('B: You ask him what he wants.', width * 0.1, height * 0.85);
   text('-', width * 0.1, height * 0.875);
   text("-", width * 0.1, height * 0.9);
-
 }
 
 function mab() {
-
   background(255);
 
   textAlign(CENTER);
@@ -645,8 +679,8 @@ function mab() {
 
   textStyle(NORMAL);
   textFont("monospace", width * 0.022);
-  text("He seems to signal with his flippers to get on his back.", width * 0.5, height * 0.725);
-  text("After your encounter with the merchant, you don't know if you should trust this turtle.", width * 0.5, height * 0.775);
+  text("He seems to signal with his flippers to get on his back. After your ", width * 0.5, height * 0.735);
+  text("encounter with the merchant, you don't know if you should trust this turtle.", width * 0.5, height * 0.77);
 
   textAlign(LEFT);
   textStyle(NORMAL);
@@ -656,11 +690,9 @@ function mab() {
   text('B: You hop onto the back of the turtle and look at the map.', width * 0.1, height * 0.85);
   text('-', width * 0.1, height * 0.875);
   text("-", width * 0.1, height * 0.9);
-
 }
 
 function maba() {
-
   background(255);
 
   textAlign(CENTER);
@@ -673,8 +705,8 @@ function maba() {
 
   textStyle(NORMAL);
   textFont("monospace", width * 0.022);
-  text('There are two circles with the titles "The Poppy Hill of Sunshine"', width * 0.5, height * 0.725);
-  text('and "The Land of the Lost".', width * 0.5, height * 0.775);
+  text('There are two circles with the titles "The Poppy Hill of Sunshine"', width * 0.5, height * 0.735);
+  text('and "The Land of the Lost".', width * 0.5, height * 0.77);
 
   textAlign(LEFT);
   textStyle(NORMAL);
@@ -684,7 +716,6 @@ function maba() {
   text('B: You tell the turtle you want to go to "The Land of the Lost".', width * 0.1, height * 0.85);
   text('-', width * 0.1, height * 0.875);
   text("-", width * 0.1, height * 0.9);
-
 }
 
 function mabb() {
@@ -705,6 +736,16 @@ function mabb() {
 }
 
 function mabaa() {
+  // background(0);
+  //
+  // textAlign(CENTER);
+  // textStyle(NORMAL);
+  // textFont("monospace", width * 0.05);
+  // fill(255);
+  // text('You get on the turtle.', width * 0.5, height * 0.425);
+  // text('You pass by a fork in the road with', width * 0.5, height * 0.525);
+  // text('a sign that has the two locations.', width * 0.5, height * 0.575);
+  // text('You continue heading left.', width * 0.5, height * 0.625);
 
   background(0);
 
@@ -712,32 +753,28 @@ function mabaa() {
   textStyle(NORMAL);
   textFont("monospace", width * 0.05);
   fill(255);
-  text('You get on the turtle.', width * 0.5, height * 0.425);
-  text('You pass by a fork in the road with', width * 0.5, height * 0.525);
-  text('a sign that has the two locations.', width * 0.5, height * 0.575);
-  text('You continue heading left.', width * 0.5, height * 0.625);
-
+  text('You get on the turtle. You pass', width * 0.5, height * 0.35);
+  text('by a fork in the road with a', width * 0.5, height * 0.45);
+  text("sign that has the two locations.", width * 0.5, height * 0.55);
+  text("You continue heading left.", width * 0.5, height * 0.65);
 }
 
 function mabab() {
-
   background(0);
 
   textAlign(CENTER);
   textStyle(NORMAL);
   textFont("monospace", width * 0.05);
   fill(255);
-  text('The turtle looks at you weirdly', width * 0.5, height * 0.425);
-  text('and lets you ride him. You pass', width * 0.5, height * 0.475);
-  text('by a fork in the road with a sign', width * 0.5, height * 0.525);
-  text('that has the two locations. He throws', width * 0.5, height * 0.575);
-  text('you off his back and runs', width * 0.5, height * 0.625);
-  text('back to where he came from.', width * 0.5, height * 0.675);
-
+  text('The turtle looks at you weirdly', width * 0.5, height * 0.25);
+  text('and lets you ride him. You pass', width * 0.5, height * 0.35);
+  text('by a fork in the road with a sign', width * 0.5, height * 0.45);
+  text('that has the two locations. He', width * 0.5, height * 0.55);
+  text('throws you off his back and runs', width * 0.5, height * 0.65);
+  text('back to where he came from.', width * 0.5, height * 0.75);
 }
 
 function mbcy() {
-
   background(0);
 
   textAlign(CENTER);
@@ -746,11 +783,9 @@ function mbcy() {
   fill(255);
   text('The merchant spits in your face.', width * 0.5, height * 0.45);
   text("You continue on your way.", width * 0.5, height * 0.55);
-
 }
 
 function mbcn() {
-
   background(0);
 
   textAlign(CENTER);
@@ -760,11 +795,9 @@ function mbcn() {
   text('The merchant shoots you', width * 0.5, height * 0.425);
   text("multiple times in the", width * 0.5, height * 0.525);
   text("head and body.", width * 0.5, height * 0.625);
-
 }
 
 function mSIGN() {
-
   background(255);
 
   textAlign(CENTER);
@@ -777,8 +810,8 @@ function mSIGN() {
 
   textStyle(NORMAL);
   textFont("monospace", width * 0.022);
-  text("There is a sign pointing in two directions.", width * 0.5, height * 0.725);
-  text("You have two paths to choose from.", width * 0.5, height * 0.775);
+  text("There is a sign pointing in two directions.", width * 0.5, height * 0.735);
+  text("You have two paths to choose from.", width * 0.5, height * 0.77);
 
   textAlign(LEFT);
   textStyle(NORMAL);
@@ -788,5 +821,4 @@ function mSIGN() {
   text('B: "The Land of the Lost"', width * 0.1, height * 0.85);
   text('-', width * 0.1, height * 0.875);
   text('-', width * 0.1, height * 0.9);
-
 }
