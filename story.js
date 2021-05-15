@@ -83,7 +83,7 @@ function titleMouseClicked() {
 
 function intro() {
 
-  background(0);
+  background(20);
 
   textAlign(LEFT);
   textStyle(BOLD);
