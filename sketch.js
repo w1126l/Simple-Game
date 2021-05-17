@@ -1,5 +1,6 @@
 
 let state = 'title';
+//let state = 'oalnbbiy-';
 
 let butterflies = [];
 let buttX, buttY, buttSpeedX, buttSpeedY;
@@ -10,7 +11,7 @@ let titleTime = 0;
 
 let butterflyBlue, gamblerSym, gamblerSymBack, scholarSym, heroSym;
 
-let oScene;
+let oScene, oalyScene, oalybcnScene, oalybbinScene, oalnScene;
 
 var canvas;
 
@@ -24,6 +25,15 @@ function preload() {
   heroSym = loadImage('media/choose-stats-icons/hero-symbol.png');
 
   oScene = loadImage('media/story-scene/o.png');
+  oalyScene = loadImage('media/story-scene/oaly.png');
+
+  oalybcnScene = loadImage('media/story-scene/oalybcn.png');
+  //ALSO OALNA
+
+  oalnbScene = loadImage('media/story-scene/oalnb.png');
+  //ALSO OALNB
+
+  oalnScene = loadImage('media/story-scene/oaln.png');
 
 }
 
@@ -106,7 +116,7 @@ function draw() {
       break;
 
     case 'oaly': //title, box, 2 options
-      oaly();
+      oaly(); //IMAGE DONE
       statsFooter();
       break;
 
@@ -115,7 +125,7 @@ function draw() {
       nContinueFooter();
       break;
     case 'oalybcn': //title, box, one line description, 2 options
-      oalybcn();
+      oalybcn(); //IMAGE DONE
       statsFooter();
       break;
 
@@ -135,7 +145,7 @@ function draw() {
     //end of death by crying sequence
 
     case 'oalnbbin': //title, box, three line description, 4 options
-      oalnbbin();
+      oalnbbin(); //TEXT DOME
       statsFooter();
       break;
     case 'oalnbbinALEX': //four lines, nContinueFooter
@@ -144,16 +154,16 @@ function draw() {
       break;
 
     case 'oaln': //title, box, one line description, 2 options
-      oaln();
+      oaln(); //IMAGE DONE
       statsFooter();
       break;
 
     case 'oalna': //title, box, two line description, 2 options
-      oalna();
+      oalna(); //USING OALNBCN
       statsFooter();
       break;
     case 'oalnb': //title, box, two line description, 2 options
-      oalnb();
+      oalnb(); //USING OALNBBIN
       statsFooter();
       break;
 

@@ -222,7 +222,7 @@ function statsFooter() {
 
 //death/over screens
 function dehydrationDeath() {
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textFont("monospace", width * 0.05);
@@ -231,7 +231,7 @@ function dehydrationDeath() {
 }
 
 function merchantGunDeath() {
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textFont("monospace", width * 0.05);
@@ -240,7 +240,7 @@ function merchantGunDeath() {
 }
 
 function unfinished() {
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textStyle(NORMAL);
@@ -252,7 +252,7 @@ function unfinished() {
 }
 
 function tbc() {
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textFont("monospace", width * 0.05);
@@ -261,7 +261,7 @@ function tbc() {
 }
 
 function oalnbbinTRYAGAIN() {
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textFont("monospace", width * 0.05);
@@ -306,7 +306,7 @@ function opening() {
   fill(0);
   text('You are falling out of the sky.', width * 0.5, height * 0.15);
 
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
   image(oScene, width * 0.1, width * 0.2, width * 0.8, height * 0.5);
 
   textAlign(LEFT);
@@ -320,7 +320,7 @@ function opening() {
 }
 
 function oaly() {
-  background(255);
+  background(220);
 
   textAlign(CENTER);
   textStyle(BOLD);
@@ -328,7 +328,8 @@ function oaly() {
   fill(0);
   text('You fall into a bush in a forest.', width * 0.5, height * 0.15);
 
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  image(oalyScene, width * 0.1, width * 0.2, width * 0.8, height * 0.5);
 
   textAlign(LEFT);
   textStyle(NORMAL);
@@ -341,7 +342,7 @@ function oaly() {
 }
 
 function oalybcy() {
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textStyle(NORMAL);
@@ -353,7 +354,7 @@ function oalybcy() {
 }
 
 function oalybcn() {
-  background(255);
+  background(220);
 
   textAlign(CENTER);
   textStyle(BOLD);
@@ -361,7 +362,8 @@ function oalybcn() {
   fill(0);
   text('You cry some more.', width * 0.5, height * 0.15);
 
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  image(oalybcnScene, width * 0.1, width * 0.2, width * 0.8, height * 0.5);
 
   textStyle(NORMAL);
   textFont("monospace", width * 0.022);
@@ -408,21 +410,23 @@ function oalybcnaCRYCRYCRY() {
 }
 
 function oalnbbin() {
-  background(255);
+  background(220);
 
   textAlign(CENTER);
   textStyle(BOLD);
   textFont("monospace", width * 0.04);
   fill(0);
-  text("The girl says she doesn't want to help you.", width * 0.5, height * 0.15);
+  text("The girl says she doesn't want to help.", width * 0.5, height * 0.15);
 
   rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  oalnbbinTEXT();
 
-  textStyle(BOLD);
+  fill(0);
+  textStyle(NORMAL);
   textFont("monospace", width * 0.018);
   text("However, she'll give you some money because she feels bad for you. You take out your", width * 0.5, height * 0.73);
-  text(' hands and say "Thank you." The girl giggles and says "You get the money if you', width * 0.5, height * 0.755);
-  text(' can answer my question." You accept. The little girl asks "What is your name?"', width * 0.5, height * 0.780);
+  text('hands and say "Thank you." The girl giggles and says "You get the money if you', width * 0.5, height * 0.755);
+  text('can answer my question." You accept. The little girl asks "What is your name?"', width * 0.5, height * 0.780);
 
   textAlign(LEFT);
   textStyle(NORMAL);
@@ -432,6 +436,27 @@ function oalnbbin() {
   text("B: I don't want to tell you.", width * 0.1, height * 0.85);
   text("C: I don't remember.", width * 0.1, height * 0.875);
   text('D: Alex ... ?', width * 0.1, height * 0.9);
+}
+
+function oalnbbinTEXT() {
+  textFont("monospace", width * 0.07);
+
+  fill(225);
+  let txt = '"What is your name?"';
+  let txtH = 10;
+  let txtW = textWidth(txt);
+  let spacing = txtW / txt.length;
+
+  for(let i = 0; i < txt.length; i++){
+    let c = txt.charAt(i);
+
+    let offsetX = random(-spacing / 10, spacing / 10);
+    let offsetY = random(-spacing / 10, spacing / 10);
+
+    let startX = (width - txtW) / 2 + spacing / 2;
+    let y = height * 0.45; //  + textHeight / 2;
+    text(c, startX + i * spacing + offsetX, y + offsetY);
+  }
 }
 
 function oalnbbinALEX() {
@@ -448,15 +473,16 @@ function oalnbbinALEX() {
 }
 
 function oaln() {
-  background(255);
+  background(220);
 
   textAlign(CENTER);
   textStyle(BOLD);
   textFont("monospace", width * 0.04);
   fill(0);
-  text('You fall into a wooden outhouse on a swamp.', width * 0.5, height * 0.15);
+  text('You fall into a swamp.', width * 0.5, height * 0.15);
 
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  image(oalnScene, width * 0.1, width * 0.2, width * 0.8, height * 0.5);
 
   textStyle(NORMAL);
   textFont("monospace", width * 0.022);
@@ -473,7 +499,7 @@ function oaln() {
 }
 
 function oalna() {
-  background(255);
+  background(220);
 
   textAlign(CENTER);
   textStyle(BOLD);
@@ -481,7 +507,8 @@ function oalna() {
   fill(0);
   text('You feel disgusted with yourself.', width * 0.5, height * 0.15);
 
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  image(oalybcnScene, width * 0.1, width * 0.2, width * 0.8, height * 0.5);
 
   textStyle(NORMAL);
   textFont("monospace", width * 0.022);
@@ -499,7 +526,7 @@ function oalna() {
 }
 
 function oalnb() {
-  background(255);
+  background(220);
 
   textAlign(CENTER);
   textStyle(BOLD);
@@ -509,12 +536,13 @@ function oalnb() {
   // text('out of the forest and starts laughing at you.', width * 0.5, height * 0.175);
   text('You see a young girl.', width * 0.5, height * 0.15);
 
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  image(oalnbScene, width * 0.1, width * 0.2, width * 0.8, height * 0.5);
 
   textStyle(NORMAL);
   textFont("monospace", width * 0.022);
-  text("She's wearing a raincoat. She comes out of the forest", width * 0.5, height * 0.735);
-  text("and starts laughing at you.", width * 0.5, height * 0.77);
+  text("She's wearing a raincoat and holding an umbrella. She comes out of", width * 0.5, height * 0.735);
+  text("the forest and starts laughing at you.", width * 0.5, height * 0.77);
 
   textAlign(LEFT);
   textStyle(NORMAL);
@@ -545,7 +573,7 @@ function oalnbbiy() {
 }
 
 function oalnbbiyMINUS() {
-  background(255);
+  background(220);
 
   textAlign(CENTER);
   textStyle(BOLD);
