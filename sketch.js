@@ -1,6 +1,5 @@
 
-//let state = 'title';
-let state = 'merchant';
+let state = 'title';
 
 let butterflies = [];
 let buttX, buttY, buttSpeedX, buttSpeedY;
