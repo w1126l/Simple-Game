@@ -56,7 +56,7 @@ function setup() {
 
   smooth();
   loop();
-  
+
   frameRate(60);
   noCursor();
   angleMode(DEGREES);
@@ -393,17 +393,17 @@ function keyReleased() {
     }
   }
 
-  else if (state === 'merchant') {
-    if (key === 'a') {
-      state = 'ma';
-    } else if (key === 'b') {
-      if (player1.cour > 5) {
-        state = 'mbcy';
-      } else {
-        state = 'mbcn';
-      }
-    }
-  }
+  // else if (state === 'merchant') {
+  //   if (key === 'a') {
+  //     state = 'ma';
+  //   } else if (key === 'b') {
+  //     if (player1.cour > 5) {
+  //       state = 'mbcy';
+  //     } else {
+  //       state = 'mbcn';
+  //     }
+  //   }
+  // }
 
   else if (state === 'ma') {
     if (key === 'a') {
@@ -459,6 +459,22 @@ function keyReleased() {
   else if (state === 'mSIGN') {
     if (key === 'a' || 'b') {
       state = 'to-be-cont';
+    }
+  }
+}
+
+function keyPressed() {
+  if (state === 'merchant') {
+    console.log('State: ' + state);
+    if (key === 'a') {
+      state = 'ma';
+      console.log('a pressed');
+    } else if (key === 'b' && player1.cour > 4) {
+      state = 'mbcy';
+      console.log('b pressed');
+    } else if (key === 'b' && player1.cour <= 4) {
+      state = 'mbcn';
+      console.log('b pressed');
     }
   }
 }
