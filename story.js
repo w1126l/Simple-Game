@@ -27,6 +27,12 @@ function title() {
   textFont("monospace", width * 0.03);
   text('By: Winnie Liang', width * 0.5, height * 0.4);
 
+  textAlign(CENTER);
+  textStyle(NORMAL);
+  textFont("monospace", width * 0.015);
+  text("Press 'C' for Credits", width * 0.5, height * 0.45);
+  text("WARNING: SOUND (There is music in the background)", width * 0.5, height * 0.5);
+
   fill(200);
   textStyle(BOLD);
   textFont("monospace", width * 0.025);
@@ -77,6 +83,8 @@ function titleMouseClicked() {
   if (state === 'title') {
     state = 'intro';
   }
+  song.volume(0.1);
+  song.play();
 }
 
 function intro() {
@@ -848,4 +856,25 @@ function mSIGN() {
   text('B: "The Land of the Lost"', width * 0.1, height * 0.85);
   text('-', width * 0.1, height * 0.875);
   text('-', width * 0.1, height * 0.9);
+}
+
+function credits() {
+  background(20);
+
+  textAlign(CENTER);
+  textFont("monospace", width * 0.02);
+  fill(255);
+
+  textStyle(BOLD);
+  textFont("monospace", width * 0.04);
+  text("Credits", width * 0.5, height * 0.15);
+  textFont("monospace", width * 0.02);
+  text("\"I Don't See the Branches, I See the Leaves\"", width * 0.5, height * 0.3);
+  text("by Chris Zabriskie", width * 0.5, height * 0.35);
+
+  textStyle(NORMAL);
+  text("is licensed under a Creative Commons Attribution 4.0 license.", width * 0.5, height * 0.425);
+  text("https://creativecommons.org/licenses/by/4.0/", width * 0.5, height * 0.475);
+  text("Source: http://chriszabriskie.com/dtv/", width * 0.5, height * 0.525);
+  text("Artist: http://chriszabriskie.com/", width * 0.5, height * 0.575);
 }

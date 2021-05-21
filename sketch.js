@@ -14,7 +14,11 @@ let oScene, oalyScene, oalybcnScene, oalybbinScene, oalnScene, oalnbbiyMINUSScen
 
 var canvas;
 
+let song;
+
 function preload() {
+
+  song = createAudio('media/song.mp3');
 
   butterflyBlue = loadImage('media/first-page/butt-blue.png');
 
@@ -51,7 +55,8 @@ function preload() {
 function setup() {
 
   smooth();
-
+  loop();
+  
   frameRate(60);
   noCursor();
   angleMode(DEGREES);
@@ -84,6 +89,11 @@ function draw() {
       title();
       titleButterfly();
       canvas.mouseClicked(titleMouseClicked);
+      break;
+    case 'credits':
+      credits();
+      restartFooter();
+      canvas.mouseClicked(restart);
       break;
     case 'intro':
       intro();
@@ -246,8 +256,15 @@ function draw() {
 
 function keyReleased() {
 
+  //credits
+  if (state === 'title') {
+    if (key === 'c') {
+      state = 'credits';
+    }
+  }
+
   //choosing stats of player
-  if (state === 'choose-stats') {
+  else if (state === 'choose-stats') {
     if (key === '1') {
       player1 = new Player('GAMBLER', 08, 02, 05);
       state = 'opening';
