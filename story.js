@@ -74,11 +74,9 @@ function titleButterfly() {
 }
 
 function titleMouseClicked() {
-
   if (state === 'title') {
     state = 'intro';
   }
-
 }
 
 function intro() {
@@ -123,14 +121,11 @@ function introMouseClicked() {
 
 //changes state back to title
 function restart() {
-
   state = 'title';
-
 }
 
 //stats/player
 function stats() {
-
   background(200);
 
   fill(0);
@@ -201,11 +196,9 @@ function stats() {
   stroke(2);
   line(width * 0.1, height * 0.9, width * 0.9, height * 0.9);
   noStroke();
-
 }
 
 function statsFooter() {
-
   let playerName = player1.name;
 
   let playerLuck = player1.luck;
@@ -217,7 +210,6 @@ function statsFooter() {
   textFont("monospace", width * 0.015);
   fill(0);
   text(playerName + ': ' + 'Luck = ' + '[' + playerLuck + '] | ' + 'Intelligence = ' + '[' + playerInt + '] | ' + 'Courage = ' + '[' + playerCour + ']', width * 0.1, height * 0.95);
-
 }
 
 //death/over screens
@@ -380,7 +372,7 @@ function oalybcn() {
 }
 
 function oalybcnaCRY() {
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textStyle(NORMAL);
@@ -390,7 +382,7 @@ function oalybcnaCRY() {
 }
 
 function oalybcnaCRYCRY() {
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textStyle(NORMAL);
@@ -400,7 +392,7 @@ function oalybcnaCRYCRY() {
 }
 
 function oalybcnaCRYCRYCRY() {
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textStyle(NORMAL);
@@ -460,7 +452,7 @@ function oalnbbinTEXT() {
 }
 
 function oalnbbinALEX() {
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textStyle(NORMAL);
@@ -555,7 +547,7 @@ function oalnb() {
 }
 
 function oalnbbiy() {
-  // background(0);
+  // background(20);
   //
   // textAlign(CENTER);
   // textStyle(NORMAL);
@@ -563,7 +555,7 @@ function oalnbbiy() {
   // fill(255);
   // text('The girl tells you to go with her.', width * 0.5, height * 0.5);
 
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textFont("monospace", width * 0.05);
@@ -581,7 +573,8 @@ function oalnbbiyMINUS() {
   fill(0);
   text('You are scared.', width * 0.5, height * 0.15);
 
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  image(oalnbbiyMINUSScene, width * 0.1, width * 0.2, width * 0.8, height * 0.5);
 
   textStyle(NORMAL);
   textFont("monospace", width * 0.022);
@@ -598,10 +591,11 @@ function oalnbbiyMINUS() {
 }
 
 function oalnbbiyMINUSa() {
-  background(0);
+  background(20);
 
   fill(255);
-  rect(width * 0.1, width * 0.1, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.1, width * 0.8, height * 0.5);
+  image(signScene, width * 0.1, width * 0.1, width * 0.8, height * 0.5);
 
   textAlign(CENTER);
   textStyle(NORMAL);
@@ -614,10 +608,11 @@ function oalnbbiyMINUSa() {
 }
 
 function oalnbbiyMINUSb() {
-  background(0);
+  background(20);
 
   fill(255);
-  rect(width * 0.1, width * 0.1, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.1, width * 0.8, height * 0.5);
+  image(signScene, width * 0.1, width * 0.1, width * 0.8, height * 0.5);
 
   textAlign(CENTER);
   textStyle(NORMAL);
@@ -629,8 +624,8 @@ function oalnbbiyMINUSb() {
   text('towards the right, "The Poppy Hill of Sunshine."', width * 0.5, height * 0.825);
 }
 
-function m() {
-  background(255);
+function merchant() {
+  background(220);
 
   textAlign(CENTER);
   textStyle(BOLD);
@@ -638,7 +633,8 @@ function m() {
   fill(0);
   text('You come across a merchant.', width * 0.5, height * 0.15);
 
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  image(merchantScene, width * 0.1, width * 0.2, width * 0.8, height * 0.5);
 
   // textStyle(NORMAL);
   // textFont("monospace", width * 0.022);
@@ -669,7 +665,7 @@ function m() {
 }
 
 function ma() {
-  background(255);
+  background(220);
 
   textAlign(CENTER);
   textStyle(BOLD);
@@ -677,7 +673,8 @@ function ma() {
   fill(0);
   text('You find a path near the merchant.', width * 0.5, height * 0.15);
 
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  image(maScene, width * 0.1, width * 0.2, width * 0.8, height * 0.5);
 
   textStyle(NORMAL);
   textFont("monospace", width * 0.022);
@@ -695,7 +692,7 @@ function ma() {
 }
 
 function mab() {
-  background(255);
+  background(220);
 
   textAlign(CENTER);
   textStyle(BOLD);
@@ -703,7 +700,8 @@ function mab() {
   fill(0);
   text('The turtle gives you a map.', width * 0.5, height * 0.15);
 
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  image(mabScene, width * 0.1, width * 0.2, width * 0.8, height * 0.5);
 
   textStyle(NORMAL);
   textFont("monospace", width * 0.022);
@@ -721,7 +719,7 @@ function mab() {
 }
 
 function maba() {
-  background(255);
+  background(220);
 
   textAlign(CENTER);
   textStyle(BOLD);
@@ -729,11 +727,12 @@ function maba() {
   fill(0);
   text('The map looks very simple.', width * 0.5, height * 0.15);
 
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  image(mabaScene, width * 0.1, width * 0.2, width * 0.8, height * 0.5);
 
   textStyle(NORMAL);
   textFont("monospace", width * 0.022);
-  text('There are two circles with the titles "The Poppy Hill of Sunshine"', width * 0.5, height * 0.735);
+  text('There are two places with the titles "The Poppy Hill of Sunshine"', width * 0.5, height * 0.735);
   text('and "The Land of the Lost".', width * 0.5, height * 0.77);
 
   textAlign(LEFT);
@@ -747,11 +746,11 @@ function maba() {
 }
 
 function mabb() {
-
-  background(0);
+  background(20);
 
   fill(255);
-  rect(width * 0.1, width * 0.1, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.1, width * 0.8, height * 0.5);
+  image(signScene, width * 0.1, width * 0.1, width * 0.8, height * 0.5);
 
   textAlign(CENTER);
   textStyle(NORMAL);
@@ -760,11 +759,10 @@ function mabb() {
   text('The turtle takes off before you tell it where', width * 0.5, height * 0.7);
   text('you want to go. You pass by a fork in the road', width * 0.5, height * 0.75);
   text('with a sign that has the two locations.', width * 0.5, height * 0.8);
-
 }
 
 function mabaa() {
-  // background(0);
+  // background(20);
   //
   // textAlign(CENTER);
   // textStyle(NORMAL);
@@ -775,7 +773,7 @@ function mabaa() {
   // text('a sign that has the two locations.', width * 0.5, height * 0.575);
   // text('You continue heading left.', width * 0.5, height * 0.625);
 
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textStyle(NORMAL);
@@ -788,7 +786,7 @@ function mabaa() {
 }
 
 function mabab() {
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textStyle(NORMAL);
@@ -803,7 +801,7 @@ function mabab() {
 }
 
 function mbcy() {
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textStyle(NORMAL);
@@ -814,7 +812,7 @@ function mbcy() {
 }
 
 function mbcn() {
-  background(0);
+  background(20);
 
   textAlign(CENTER);
   textStyle(NORMAL);
@@ -826,7 +824,7 @@ function mbcn() {
 }
 
 function mSIGN() {
-  background(255);
+  background(220);
 
   textAlign(CENTER);
   textStyle(BOLD);
@@ -834,7 +832,8 @@ function mSIGN() {
   fill(0);
   text('You travel until you hit a fork in the road.', width * 0.5, height * 0.15);
 
-  rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  //rect(width * 0.1, width * 0.2, width * 0.8, height * 0.5);
+  image(signScene, width * 0.2, width * 0.1, width * 0.8, height * 0.5);
 
   textStyle(NORMAL);
   textFont("monospace", width * 0.022);

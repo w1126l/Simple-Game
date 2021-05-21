@@ -1,6 +1,6 @@
 
-let state = 'title';
-//let state = 'oalnbbiy-';
+//let state = 'title';
+let state = 'merchant';
 
 let butterflies = [];
 let buttX, buttY, buttSpeedX, buttSpeedY;
@@ -11,7 +11,7 @@ let titleTime = 0;
 
 let butterflyBlue, gamblerSym, gamblerSymBack, scholarSym, heroSym;
 
-let oScene, oalyScene, oalybcnScene, oalybbinScene, oalnScene;
+let oScene, oalyScene, oalybcnScene, oalybbinScene, oalnScene, oalnbbiyMINUSScene, signScene, merchantScene, maScene, mabScene, mabaScene;
 
 var canvas;
 
@@ -34,6 +34,18 @@ function preload() {
   //ALSO OALNB
 
   oalnScene = loadImage('media/story-scene/oaln.png');
+
+  oalnbbiyMINUSScene = loadImage('media/story-scene/oalnbbiyMINUS.png');
+
+  signScene = loadImage('media/story-scene/sign.png');
+
+  merchantScene = loadImage('media/story-scene/merchant.png');
+
+  maScene = loadImage('media/story-scene/ma.png');
+
+  mabScene = loadImage('media/story-scene/mab.png');
+
+  mabaScene = loadImage('media/story-scene/maba.png');
 
 }
 
@@ -172,39 +184,39 @@ function draw() {
       nContinueFooter();
       break;
     case 'oalnbbiy-': //title, box, one line description, 2 options
-      oalnbbiyMINUS();
+      oalnbbiyMINUS(); //IMAGE DONE
       statsFooter();
       break;
     case 'oalnbbiy-a': //REVERSE, box, four line description, nContinueFooter
-      oalnbbiyMINUSa();
+      oalnbbiyMINUSa(); //IMG SIGN
       nContinueFooter();
       break;
     case 'oalnbbiy-b': //REVERSE, box, four line description, nContinueFooter
-      oalnbbiyMINUSb();
+      oalnbbiyMINUSb(); //IMG SIGN
       nContinueFooter();
       break;
 
     //merchant
-    case 'm': //title, box, two line description, 2 options
-      m();
+    case 'merchant': //title, box, two line description, 2 options
+      merchant(); //IMG DONE
       statsFooter();
       break;
 
     case 'ma': //title, box, two line description, 2 options
-      ma();
+      ma(); //IMG DONE
       statsFooter();
       break;
     case 'mab': //title, box, two line description, 2 options
-      mab();
+      mab(); //IMG DONE
       statsFooter();
       break;
     case 'maba': //title, box, two line description, 2 options
-      maba();
+      maba(); //IMG DONE
       statsFooter();
       break;
 
     case 'mabb': //REVERSE, box, three line description, nContinueFooter
-      mabb();
+      mabb(); //IMG SIGN
       nContinueFooter();
       break;
 
@@ -226,8 +238,10 @@ function draw() {
       nContinueFooter();
       break;
     case 'mSIGN': //title, box, two line description, 2 options
-      mSIGN();
+      mSIGN(); //IMG SIGN
       break;
+    default:
+      state = 'title';
   }
 }
 
@@ -282,7 +296,7 @@ function keyReleased() {
     if (key === 'a') {
       state = 'oalybcnaCRY';
     } else if (key === 'b') {
-      state = 'm';
+      state = 'merchant';
     }
   }
 
@@ -316,13 +330,13 @@ function keyReleased() {
     if (key === 'a') {
       state = 'oalybcnaCRY'
     } else if (key === 'b') {
-      state = 'm';
+      state = 'merchant';
     }
   }
 
   else if (state === 'oalnb') {
     if (key === 'a') {
-      state = 'm';
+      state = 'merchant';
     } else if (key === 'b') {
       if (player1.int > 4) {
         state = 'oalnbbiy';
@@ -363,11 +377,11 @@ function keyReleased() {
     }
   }
 
-  else if (state === 'm') {
+  else if (state === 'merchant') {
     if (key === 'a') {
       state = 'ma';
     } else if (key === 'b') {
-      if (player1.cour > 4) {
+      if (player1.cour > 5) {
         state = 'mbcy';
       } else {
         state = 'mbcn';
